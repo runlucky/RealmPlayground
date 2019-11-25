@@ -10,7 +10,8 @@ import SwiftUI
 import RealmSwift
 
 struct ContentView: View {
-    @State var value = "a"
+    
+    
     private let config = Realm.Configuration(
         schemaVersion: 3,
         migrationBlock: { migration, oldSchemaVersion in
@@ -28,19 +29,30 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            TextField("", text: $value)
-            Button("更新") {
+            Button("サイズ") {
                 try! Realm(configuration: self.config)
             }
-            Button("書き込み") {
+            Button("update") {
                 let realm = try! Realm(configuration: self.config)
                 try! realm.write {
                     for i in 0...100000 {
                         let dog = Dog()
-                        dog.name = "hoge"
+                        dog.name = "hoge" + i.description
                         dog.age = i
                         dog.updated = Date()
-                        realm.add(dog)
+                        realm.add(dog, update: .modified)
+                    }
+                }
+            }
+            Button("insert") {
+                let realm = try! Realm(configuration: self.config)
+                try! realm.write {
+                    for i in 0...100000 {
+                        let dog = Dog()
+                        dog.name = "hoge" + i.description
+                        dog.age = i
+                        dog.updated = Date()
+                        realm.add(dog, update: .modified)
                     }
                 }
             }
@@ -48,9 +60,18 @@ struct ContentView: View {
                 let realm = try! Realm(configuration: self.config)
                 let dogs = realm.objects(Dog.self)
                 print(dogs.count.description)
-
-
             }
+            
+            Button("invalidate")  {
+                let realm = try! Realm(configuration: self.config)
+                realm.invalidate()
+            }
+            Button("コピーで置き換え")  {
+                let realm = try! Realm(configuration: self.config)
+                realm.writeCopy(toFile: <#T##URL#>)
+            }
+
+            
             Button("リセット") {
                 let realm = try! Realm(configuration: self.config)
                 try! realm.write {
