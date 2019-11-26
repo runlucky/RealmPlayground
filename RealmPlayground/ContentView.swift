@@ -55,81 +55,103 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Button("サイズ") {
-                self.elapsed("サイズ") {
-                    _ = self.realm
-                }
-            }
-            Button("update") {
-                let realm = self.realm
-                let dogs = self.realm.objects(Dog.self)
-                self.elapsed("update") {
-                    try! realm.write {
-                        dogs.forEach { dog in
-                            dog.age += 1
-                            dog.updated = Date()
-                            realm.add(dog, update: .modified)
-                        }
+            VStack {
+                Button("サイズ") {
+                    self.elapsed("サイズ") {
+                        _ = self.realm
                     }
                 }
-            }
-            Button("insert") {
-                let realm = self.realm
-                self.elapsed("insert") {
-                    try! realm.write {
-                        for i in 0...100000 {
-                            let dog = Dog()
-                            dog.name = NSUUID().uuidString + i.description
-                            dog.age = i
-                            dog.updated = Date()
-                            realm.add(dog, update: .modified)
-                        }
-                    }
-                }
-            }
-            Button("レコード数") {
-                self.elapsed("レコード数") {
-                    let dogs = self.realm.objects(Dog.self)
-                    print("レコード数: " + dogs.count.description)
-                }
-            }
-
-            Button("invalidate") {
-                self.elapsed("invalidate") {
-                    self.realm.invalidate()
-                }
-            }
-            Button("コピー") {
-                self.elapsed("コピー") {
-                    self.realm.compactCopy(destination: self.temp)
-                    print("コピー: \(self.size) → \(self.temp.byte)")
-                }
-            }
-            Button("置き換え") {
-                self.elapsed("置き換え") {
-                    self.temp.replace(to: self.path)
-                }
-            }
-
-            Button("出力") {
-                let dogs = self.realm.objects(Dog.self).sorted(byKeyPath: "name")
-                print("first: " + (dogs.first?.description ?? "nil"))
-                print("last : " + (dogs.last?.description ?? "nil"))
-            }
-
-            Button("レコード削除") {
-                self.elapsed("レコード削除") {
+                Button("update") {
                     let realm = self.realm
-                    let dogs = realm.objects(Dog.self)
-                    try! realm.write {
-                        realm.delete(dogs)
+                    let dogs = self.realm.objects(Dog.self)
+                    self.elapsed("update") {
+                        try! realm.write {
+                            dogs.forEach { dog in
+                                dog.age += 1
+                                dog.updated = Date()
+                                realm.add(dog, update: .modified)
+                            }
+                        }
+                    }
+                }
+                Button("insert") {
+                    let realm = self.realm
+                    self.elapsed("insert") {
+                        try! realm.write {
+                            for i in 0...100000 {
+                                let dog = Dog()
+                                dog.name = NSUUID().uuidString + i.description
+                                dog.age = i
+                                dog.updated = Date()
+                                realm.add(dog, update: .modified)
+                            }
+                        }
+                    }
+                }
+                Button("レコード数") {
+                    self.elapsed("レコード数") {
+                        let dogs = self.realm.objects(Dog.self)
+                        print("レコード数: " + dogs.count.description)
+                    }
+                }
+                Button("invalidate") {
+                    self.elapsed("invalidate") {
+                        self.realm.invalidate()
+                    }
+                }
+                Button("コピー") {
+                    self.elapsed("コピー") {
+                        self.realm.compactCopy(destination: self.temp)
+                        print("コピー: \(self.size) → \(self.temp.byte)")
+                    }
+                }
+                Button("置き換え") {
+                    self.elapsed("置き換え") {
+                        self.temp.replace(to: self.path)
                     }
                 }
             }
-            Button("物理削除") {
-                self.elapsed("物理削除") {
-                    self.path.delete()
+            VStack {
+                Button("出力") {
+                    let dogs = self.realm.objects(Dog.self).sorted(byKeyPath: "name")
+                    print("first: " + (dogs.first?.description ?? "nil"))
+                    print("last : " + (dogs.last?.description ?? "nil"))
                 }
+
+                Button("レコード削除") {
+                    self.elapsed("レコード削除") {
+                        let realm = self.realm
+                        let dogs = realm.objects(Dog.self)
+                        try! realm.write {
+                            realm.delete(dogs)
+                        }
+                    }
+                }
+
+                Button("出力(1000)") {
+                    guard let dog = self.realm.objects(Dog.self).filter("age == %@", 1000).first else {
+                        print("not found")
+                        return
+                    }
+                    print("1000: " + dog.description)
+                }
+
+                Button("レコード削除(1000)") {
+                    self.elapsed("レコード削除") {
+                        let realm = self.realm
+                        let dogs = realm.objects(Dog.self).filter("age == %@", 1000)
+                        try! realm.write {
+                            realm.delete(dogs)
+                        }
+                    }
+                }
+
+                Button("物理削除") {
+                    self.elapsed("物理削除") {
+                        self.path.delete()
+                    }
+                }
+
             }
         }
     }
