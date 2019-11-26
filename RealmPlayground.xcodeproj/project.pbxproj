@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		08C5759E238CF8CF00F8715F /* ElapsedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C5759D238CF8CF00F8715F /* ElapsedButtonView.swift */; };
+		08C575A0238CFD5300F8715F /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C5759F238CFD5300F8715F /* Dog.swift */; };
+		08C575A3238CFDA000F8715F /* RealmExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C575A2238CFDA000F8715F /* RealmExtensions.swift */; };
+		08C575A5238CFE2A00F8715F /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C575A4238CFE2A00F8715F /* IntExtensions.swift */; };
+		08C575A7238CFE5600F8715F /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C575A6238CFE5500F8715F /* URLExtensions.swift */; };
 		19AF13A8238C002B00FE70A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF13A7238C002B00FE70A9 /* AppDelegate.swift */; };
 		19AF13AA238C002B00FE70A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF13A9238C002B00FE70A9 /* SceneDelegate.swift */; };
 		19AF13AD238C002B00FE70A9 /* RealmPlayground.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19AF13AB238C002B00FE70A9 /* RealmPlayground.xcdatamodeld */; };
@@ -20,6 +24,10 @@
 
 /* Begin PBXFileReference section */
 		08C5759D238CF8CF00F8715F /* ElapsedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedButtonView.swift; sourceTree = "<group>"; };
+		08C5759F238CFD5300F8715F /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
+		08C575A2238CFDA000F8715F /* RealmExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmExtensions.swift; sourceTree = "<group>"; };
+		08C575A4238CFE2A00F8715F /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
+		08C575A6238CFE5500F8715F /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		19AF13A4238C002B00FE70A9 /* RealmPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19AF13A7238C002B00FE70A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19AF13A9238C002B00FE70A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +63,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		08C575A1238CFD8D00F8715F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				08C575A2238CFDA000F8715F /* RealmExtensions.swift */,
+				08C575A4238CFE2A00F8715F /* IntExtensions.swift */,
+				08C575A6238CFE5500F8715F /* URLExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		19AF139B238C002B00FE70A9 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +94,7 @@
 		19AF13A6238C002B00FE70A9 /* RealmPlayground */ = {
 			isa = PBXGroup;
 			children = (
+				08C575A1238CFD8D00F8715F /* Extensions */,
 				08C5759C238CF8A100F8715F /* Views */,
 				19AF13A7238C002B00FE70A9 /* AppDelegate.swift */,
 				19AF13A9238C002B00FE70A9 /* SceneDelegate.swift */,
@@ -84,6 +103,7 @@
 				19AF13B8238C003000FE70A9 /* Info.plist */,
 				19AF13AB238C002B00FE70A9 /* RealmPlayground.xcdatamodeld */,
 				19AF13B2238C003000FE70A9 /* Preview Content */,
+				08C5759F238CFD5300F8715F /* Dog.swift */,
 			);
 			path = RealmPlayground;
 			sourceTree = "<group>";
@@ -229,7 +249,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				08C5759E238CF8CF00F8715F /* ElapsedButtonView.swift in Sources */,
+				08C575A5238CFE2A00F8715F /* IntExtensions.swift in Sources */,
 				19AF13AD238C002B00FE70A9 /* RealmPlayground.xcdatamodeld in Sources */,
+				08C575A0238CFD5300F8715F /* Dog.swift in Sources */,
+				08C575A7238CFE5600F8715F /* URLExtensions.swift in Sources */,
+				08C575A3238CFDA000F8715F /* RealmExtensions.swift in Sources */,
 				19AF13A8238C002B00FE70A9 /* AppDelegate.swift in Sources */,
 				19AF13AF238C002B00FE70A9 /* ContentView.swift in Sources */,
 				19AF13AA238C002B00FE70A9 /* SceneDelegate.swift in Sources */,
